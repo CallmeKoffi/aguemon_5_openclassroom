@@ -1,6 +1,18 @@
 body{
     background:linear-gradient(#fff, #e0e0e9);
 }
+ul{
+    display: flex;
+}
+li{
+    list-style: none;
+    padding-right: 1rem;
+}
+
+.header{
+    display: flex;
+    justify-content: space-around;
+}
 
 .banner{
     background-image: url(./images/vcam_5.jpg);
@@ -10,3 +22,35 @@ body{
 
 }
 
+#carrousel_1{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+#carrousel_2{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 4rem;
+}
+#carrousel_3{
+    display: flex;
+    justify-content: center;
+    
+}
+
+.card{
+    max-width: 300px;
+    max-height: 300px;
+    border-radius: 20px;
+    background-color: gainsboro;
+    padding: 0.5rem;
+    margin: 1rem ;
+    
+}
+.product_picture{
+    width: 100%;
+   height: 100%;
+   border-radius: 20px 20px 0 0;
+   object-fit: cover;
+}
