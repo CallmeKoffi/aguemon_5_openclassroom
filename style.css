@@ -1,6 +1,9 @@
 body{
     background:linear-gradient(#fff, #e0e0e9);
 }
+h2{
+    text-align: center;
+}
 ul{
     display: flex;
 }
@@ -13,7 +16,7 @@ li{
     display: flex;
     justify-content: space-around;
 }
-
+/* Style bannière page index*/ 
 .banner{
     background-image: url(./images/vcam_5.jpg);
     width: 100%;
@@ -21,6 +24,7 @@ li{
     object-fit: cover;
 
 }
+/* Style section carte produits*/
 
 #carrousel_1{
     display: flex;
@@ -45,8 +49,11 @@ li{
     border-radius: 20px;
     background-color: gainsboro;
     padding: 0.5rem;
-    margin: 1rem ;
-    
+    margin: 1rem ;   
+}
+.card:hover{
+
+   transform: scale(1.5);
 }
 .product_picture{
     width: 100%;
