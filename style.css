@@ -74,7 +74,8 @@ li{
     height: 100%;
     display: block;
     margin: 6rem auto 10rem auto;
-    background-color: goldenrod;
+    background-color: rgb(165, 165, 160);
+    border-radius: 40px;
     
 }
 .product__picture--individual{
