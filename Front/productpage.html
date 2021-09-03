@@ -29,28 +29,30 @@
  </div>
 
     <section>
-        <div class="product__card" >
-            <img src="./images/vcam_1.jpg" alt="cameraone" class="product__picture--individual">
-            <div class="info__product">
-
-                <p class="title__product"  ></p>
-                <h3 class="price__product" ></h3>
-
-            </div>
-                
-            <form method="post">
-
-                <fieldset class="fieldset">
-                  <legend>Choisissez</legend>
-                  <label><input type="number" name="number"> produit(s)</label>
-                <legend>Catégorie</legend>
-                  <label><input type="number" name="number" id="product__category∑"> produit(s)</label>
-                </fieldset>
-                <input type="submit" value="Acheter">
-
-            </form>
-    
+     <div class="container__product">
+        <div class="container__product--image" >
+            <img src="" alt="" >
         </div>
+            
+        <div class="container__product--info">
+            <ul>
+                <li>Nom Produit : <span id="name">uu</span></li>
+                <li>Description : <span id="description">uu</span></li>
+                <li>Prix: <span id="name">uu</span></li>
+                
+            </ul>
+        </div>
+        <form >
+            <label for="option__produit"></label>
+            <select name="option__produit" id="option__produit">
+                <option value="option_1">1</option>
+                <option value="option_2">2</option>
+                <option value="option_3">3</option>
+            </select>
+        </form>
+
+        <button type="submit" name="btn__send" id="btn__send">Ajouter au panier</button>
+      </div>      
         
     </section>
 
