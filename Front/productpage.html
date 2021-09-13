@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="./assets/css/style.css"/>
     
     <title>Page produit #1</title>
 </head>
@@ -24,36 +24,41 @@
 
     <!--Construction banner site-->
     <div >
-        <img src="./images/vcam_1.jpg" alt="camera" class="banner__picture">
+        <img src="./images/guide-appareil-photo-voyage.jpeg" alt="camera" class="banner__picture">
         
  </div>
 
     <section>
      <div class="container__product">
         <div class="container__product--image" >
-            <img src="" alt="" >
+            <img src="" alt="camera product" id="container__product--image">
         </div>
             
         <div class="container__product--info">
             <ul>
-                <li>Nom Produit : <span id="name">uu</span></li>
-                <li>Description : <span id="description">uu</span></li>
-                <li>Prix: <span id="name">uu</span></li>
+                <li>Nom Produit : <span id="name"></span></li>
+                <li>Description : <span id="description"></span></li>
+                <li>Prix: <span id="price"></span></li>
                 
             </ul>
         </div>
-        <form >
+        <div>
             <label for="option__produit"></label>
-            <select name="option__produit" id="option__produit">
-                <option value="option_1">1</option>
-                <option value="option_2">2</option>
-                <option value="option_3">3</option>
-            </select>
-        </form>
-
-        <button type="submit" name="btn__send" id="btn__send">Ajouter au panier</button>
-      </div>      
+            <select id="option__produit" name="option__produit" >
         
+            </select>
+        </div>
+            
+    
+        <button type="button" name="btn__send" id="add_to_cart">
+            Ajouter au panier
+        </button>
+        <button onclick="window.location.href= '/Front/index.html'">
+            Retour à l'acceuil
+        </button>
+       
+        
+      
     </section>
 
     <footer>
@@ -63,7 +68,7 @@
             <li>Informations</li>
         </ul>
     </footer>
-    <script src="./product.js"></script>
+    <script src="./assets/js/product.js"></script>
 </body>
 
 </html>
