@@ -2,7 +2,7 @@
 let productsBody = document.querySelector("#products");
 fetch("http://localhost:3000/api/cameras").then((res) => 
  res.json().then((data) => {
-    console.log(data);
+    //console.log(data);
     data.forEach(product => {
         var clone = document.querySelector("#clone_product").content.cloneNode(true);
         clone.querySelector(".zoomcard").setAttribute("href", "./productpage.html?id="+ product._id)

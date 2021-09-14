@@ -4,9 +4,9 @@ body{
 h2{
     text-align: center;
 }
-/*ul{
+ul.list{
     display: flex;
-}*/
+}
 li{
     list-style: none;
     padding-right: 1rem;
