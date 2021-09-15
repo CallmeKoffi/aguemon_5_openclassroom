@@ -1,6 +1,11 @@
-// Constante
+// -------------Constante ID produit individuel--------------
+
 const idProduct = (new URL(document.location)).searchParams.get("id")
+
+//-------------- Constante URL produit individuel-----------------
+
 const urlcamera = ' http://localhost:3000/api/cameras/' + idProduct
+
 //--------------------fetch contact api camera----------------
 
 fetch(urlcamera).then((res) => 
@@ -15,6 +20,7 @@ res.json().then((product) => {
      document.querySelector("#add_to_cart").addEventListener("click",addToCart)
 
 // -----------Choice of lenses option nfor product---------------
+
          function fillSelect(lenses){
             let select = document.querySelector('#option__produit');
             let index = 0;
@@ -37,17 +43,20 @@ res.json().then((product) => {
  
             
         }
-         //console.log(cartChoice)
+           
     //--------------Création variable récupération valeur dans LS-------------
+
          let productsInCart = JSON.parse(localStorage.getItem("products"));
 
-    //------------------constante conserver produit dans LS-----------------------------
+    //------------------constante conserver produit dans LS----------------------------
+    
     const productInLs = () =>{
         productsInCart.push(cartChoice);
             localStorage.setItem("products", JSON.stringify(productsInCart));
 
     } 
     //-------------------fonction message après ajout panier--------------------
+
     function confirmMessage(){
         if (window.confirm("Votre produit à bien été ajouté au panier,Ok pour aller au panier ANNULER pour retouner à l'aaceuil")){
             window.location.href= '/Front/cart.html';

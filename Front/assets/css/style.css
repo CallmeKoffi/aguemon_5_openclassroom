@@ -91,7 +91,15 @@ div.banner{
     height: 40rem;
     border-radius: 40px 40px 0 0;
 }
-/*.info__product{
+/* style page cart*/
+
+.container_cart{
+    border: 2px solid black;
+    border-radius: 30px;
+    background-color:gainsboro ;
+
+}
+.container_cart-titles{
     display: flex;
     justify-content: space-around;
-}*/
+}
