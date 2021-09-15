@@ -38,28 +38,41 @@ res.json().then((product) => {
             
         }
          //console.log(cartChoice)
-         let productsInCart = JSON.parse(localStorage.getItem(products));
-         console.log(productsInCart)
-         /*if (productsInCart) {
-             
+    //--------------Création variable récupération valeur dans LS-------------
+         let productsInCart = JSON.parse(localStorage.getItem("products"));
+
+    //------------------constante conserver produit dans LS-----------------------------
+    const productInLs = () =>{
+        productsInCart.push(cartChoice);
+            localStorage.setItem("products", JSON.stringify(productsInCart));
+
+    } 
+    //-------------------fonction message après ajout panier--------------------
+    function confirmMessage(){
+        if (window.confirm("Votre produit à bien été ajouté au panier,Ok pour aller au panier ANNULER pour retouner à l'aaceuil")){
+            window.location.href= '/Front/cart.html';
+        }else{
+            window.location.href= '/Front/index.html';
+        }
+    }     
+    //-----------Condition de présence ou non d'article dans le panier-----------------
+
+         if (productsInCart) {
+            productInLs();
+            confirmMessage();
+            console.log(productsInCart) 
          } else {
+             productsInCart = [];
+             productInLs();
+             confirmMessage();
+
+             console.log(productsInCart)
              
              
-         }*/
+         }
          }
     })
     ).catch(err => alert("Erreur : Vous n'etes pas sur le bon serveur "+ err))
-
-    //localStorage.removeItem('colorSetting', '#a4509b');
-    /*function cart() {
-        var currentColor = localStorage.getItem('bgcolor');
-        var currentFont = localStorage.getItem('font');
-        var currentImage = localStorage.getItem('image');
-      
-        document.getElementById('bgcolor').value = currentColor;
-        document.getElementById('font').value = currentFont;
-        document.getElementById('image').value = currentImage;*/
-
     
     
 
