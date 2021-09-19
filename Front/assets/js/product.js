@@ -6,6 +6,8 @@ const idProduct = (new URL(document.location)).searchParams.get("id")
 
 const urlcamera = ' http://localhost:3000/api/cameras/' + idProduct
 
+
+
 //--------------------fetch contact api camera----------------
 
 fetch(urlcamera).then((res) => 
@@ -15,8 +17,10 @@ res.json().then((product) => {
      document.querySelector('#name').innerHTML = product.name;
      document.querySelector('#price').innerHTML = product.price / 100 + " €";
      document.querySelector('#description').innerHTML = product.description;
-   
+//----------------------fonction affichage toute options produit---------------------------   
      fillSelect(product.lenses)
+
+//---------------------écoute évènement clic sur bouton d'ajout panier-------------------
      document.querySelector("#add_to_cart").addEventListener("click",addToCart)
 
 // -----------Choice of lenses option nfor product---------------
