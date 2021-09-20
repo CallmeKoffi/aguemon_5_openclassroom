@@ -106,6 +106,16 @@ div.banner {
 }
 /*Formulaire panier*/
 
-form{
-    
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+input{
+    width: 80vw;
+    margin: 1rem ;
+}
+textarea{
+    width: 80vw;
 }

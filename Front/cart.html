@@ -49,18 +49,38 @@
 
     </section>
 
-    <form action="" method="get" class="form-example">
+    <form action="" method="POST" class="form">
+      <h3>Formulaire</h3>
+
       <div class="form-example">
-        <label for="name">Entrer votre prénom : </label>
-        <input type="text" name="name" id="name" required>
+        <label for="firstName">Entrer votre prénom : </label>
+        <input type="text" name="firstName" id="fistName" required>
       </div>
+
       <div class="form-example">
-        <label for="email">Enter your email: </label>
+        <label for="lasttName">Entrer votre nom : </label>
+        <input type="text" name="lastName" id="lastName" required>
+      </div>
+
+      <div class="form-example">
+        <label for="address">Entrer votre adresse : </label>
+        <textarea name="address" id="address" required></textarea>  
+      </div>
+
+      <div class="form-example">
+        <label for="city">Entrer votre ville : </label>
+        <input type="text" name="city" id="city" required>
+      </div>
+
+      <div class="form-example">
+        <label for="email">Entrer votre email: </label>
         <input type="email" name="email" id="email" required>
       </div>
+
       <div class="form-example">
-        <input type="submit" value="Subscribe!">
+        <input type="submit" name="envoie" value="Commandez">
       </div>
+
     </form>
 
     <footer>
