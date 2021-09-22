@@ -8,7 +8,7 @@ fetch("http://localhost:3000/api/cameras").then((res) =>
         clone.querySelector(".zoomcard").setAttribute("href", "./productpage.html?id="+ product._id)
         clone.querySelector('.product_picture').setAttribute("src", product.imageUrl);
         clone.querySelector('.title_product').innerHTML = product.name;
-        clone.querySelector('.price_product').innerHTML = product.price / 100 + "€";
+        clone.querySelector('.price_product').innerHTML = formatPrice(product.price);
         clone.querySelector('.decription__product').innerHTML = product.description;
         productsBody.appendChild(clone);
     });

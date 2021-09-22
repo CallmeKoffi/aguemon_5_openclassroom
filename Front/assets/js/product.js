@@ -15,7 +15,7 @@ res.json().then((product) => {
     
      document.querySelector('#container__product--image').setAttribute("src", product.imageUrl);
      document.querySelector('#name').innerHTML = product.name;
-     document.querySelector('#price').innerHTML = product.price / 100 + " €";
+     document.querySelector('#price').innerHTML = formatPrice(product.price);
      document.querySelector('#description').innerHTML = product.description;
 //----------------------fonction affichage toute options produit---------------------------   
      fillSelect(product.lenses)
@@ -43,8 +43,8 @@ res.json().then((product) => {
             name : product.name,
             price : product.price / 100,
             lense : product.select,
-            quantity : 1
- 
+            quantity : 1,
+            id : product._id
             
         }
            

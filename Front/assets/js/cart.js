@@ -1,14 +1,22 @@
 //----------------------- declaration variable afin d'avoir mon LS actif sur page cart---------
 
-let productsInCart = JSON.parse(localStorage.getItem('products'));
+//----------- variable  productsStorage qui contient les élément produits qui sont dans le LS-----
+let productsStorage = JSON.parse(localStorage.getItem('products'));
+
+//---------variable  productDisplayInCart qui est un tableau pour indexer les produits---------
 let productDisplayInCart = [];
+
 //---------creation constante qui prend le container panier----------
 
 const cartContainer = document.querySelector('.container_cart');
 
 //----------création message quand panier vide-------------
 
-if (productsInCart === null) {
+/**
+ * Si il n'ya pas de données dans le LS afficher panier vide , retour à l'acceuil
+ */
+
+if (productsStorage === null) {
   const msgEmpty = `
      <div class="container_cart_empty">
         <div>
@@ -17,24 +25,29 @@ if (productsInCart === null) {
 
     </div>`;
   cartContainer.innerHTML = msgEmpty;
+
   //---------------implantation produit choisis dans le containeur-------------
+
+  /**
+   * Sinon indexer le tableau de qui contient les produits
+   * et les afficher avec nom du produit et prix
+   */
+
 } else {
-  for (let i = 0; i < productsInCart.length; i++) {
+  for (let i = 0; i < productsStorage.length; i++) {
     productDisplayInCart =
       productDisplayInCart +
       `
         
         <div class= "container_class-info" >
            <div >
-              Nom article : ${productsInCart[i].name}
+              Nom article : ${productsStorage[i].name}
             
            </div>
            
            <div>
-              Prix : ${productsInCart[i].price} €
+              Prix : ${productsStorage[i].price} €
            </div>
-
-           
 
         </div>
         `;
@@ -44,7 +57,15 @@ if (productsInCart === null) {
 
   cartContainer.innerHTML = productDisplayInCart;
 }
+/**
+ * constante qui target le bouton corbeille de la page cart 
+ */
 const removeAll = document.querySelector('.btn-remove-all');
+
+/**
+ * Fonction addeventlistener pour écouter le click sur le bouton corbeille et vider 
+ * le localstorage 
+ */
 removeAll.addEventListener('click', (e) => {
   e.preventDefault;
   //-----------------Vider le LS-------------
@@ -56,25 +77,32 @@ removeAll.addEventListener('click', (e) => {
   window.location.href = '/Front/cart.html';
 });
 
-//-------------------------------suppression article dans panier-----------------------
-/*let btnTrash = document.querySelectorAll(".btn_remove");
-console.log(btnTrash)*/
+//---------------------------------------prix total du panier-----------------------------------------
 
-//---------------------------prix total du panier---------------------------
+/**
+   * créer un tableau totalPriceMath
+   * faire une boucle pour stocker chaque prix des produits dans vriable
+*/
 let totalPriceMath = [];
-for (let j = 0; j < productsInCart.length; j++) {
-  let priceItems = productsInCart[j].price;
+for (let j = 0; j < productsStorage.length; j++) {
+  let priceItems = productsStorage[j].price;
 
-  //---------------------insérer prix des article panier dans tableau pour calcul----------------
+  /**
+   * insérer prix des article panier dans tableau pour calcul
+   */
 
   totalPriceMath.push(priceItems);
 }
 
-//---------------Addition prix---------------------
+/**
+ * Fonction qui additionne tout les prix
+ * @param {any} previousValue 
+ * @param {any} currentValue 
+ * @returns string
+ */
 
 const reducer = (previousValue, currentValue) => previousValue + currentValue;
-let totalPrice = totalPriceMath.reduce(reducer,0);
-console.log(totalPrice);
+let totalPrice = totalPriceMath.reduce(reducer, 0);
 
 //-------------Affichage prix----------------------
 const structurePriceHtml = `
@@ -83,3 +111,113 @@ const structurePriceHtml = `
 </div>`;
 
 cartContainer.insertAdjacentHTML('beforeend', structurePriceHtml);
+
+//----------------------- installation formulaire dynamiquement------------------
+
+const htmlFormCart = () => {
+  //------------ selection form dans le dom-------------
+
+  const cartFormPosition = document.querySelector('.container_cart');
+
+  //------------------formulaire-------------
+
+  const elementInForm = `
+  <form action="" method="POST" id="form">
+      <h3>Formulaire</h3>
+
+      <div class="form_field">
+        <label for="firstName">Entrer votre prénom : </label>
+        <input type="text" name="firstName" id="firstName" required>
+      </div>
+
+      <div class="form_field">
+        <label for="lasttName">Entrer votre nom : </label>
+        <input type="text" name="lastName" id="lastName" required>
+      </div>
+
+      <div class="form_field">
+        <label for="address">Entrer votre adresse : </label>
+        <textarea name="address" id="address" required></textarea>  
+      </div>
+
+      <div class="form_field">
+        <label for="city">Entrer votre ville : </label>
+        <input type="text" name="city" id="city" required>
+      </div>
+
+      <div class="form_field">
+        <label for="email">Entrer votre email: </label>
+        <input type="email" name="email" id="email" required>
+      </div>
+
+      <div class="form_field">
+        <input type="submit" name="envoie" value="Commandez" id = "btn_form">
+      </div>
+
+    </form>
+  `;
+
+  //----------------------insertion ligne html--------------------
+  cartFormPosition.insertAdjacentHTML('afterend', elementInForm);
+};
+
+//-----------------affichage formulaire--------------------------
+
+htmlFormCart();
+
+//------------controle donnée entré dans le formulaire-----------
+let formControl = document.querySelector('#form');
+
+//----------------------------------tableau des données formulaire----------------------------------
+
+//------------pointage bouton foprmulaire--------------------
+const btnForm = document.querySelector('#btn_form');
+//---------------------------Event bouton formulaire--------------
+/**
+ * 
+ */
+
+btnForm.addEventListener('click', (e) => {
+  e.preventDefault();
+  
+  let contact = {
+    firstName: document.querySelector('#firstName').value,
+    lastName: document.querySelector('#lastName').value,
+    address: document.querySelector('#address').value,
+    city: document.querySelector('#city').value,
+    email: document.querySelector('#email').value,
+  };
+
+  //--------------------Récupération données formulaire pour LS------------------------
+  localStorage.setItem('contact', JSON.stringify(contact));
+
+  //------------Création objet qui contient produits et contact client-----------------
+  /**
+   * 
+   */
+  const products = productsStorage.map(product => product.id);
+  console.log(products)
+  const dataSend = {
+    products,
+    contact,
+  };
+ 
+  //-------------envoi des données récupéré au server via fetch POST--------------
+  /**
+   * 
+   */
+  
+  const promise = fetch('http://localhost:3000/api/cameras/order', {
+    method: 'POST',
+    body: JSON.stringify(dataSend),
+    headers: {
+      'content-type': 'application/JSON',
+    },
+  });
+  promise.then(async (Response) => {
+    try {
+      const dataContent = await Response.json();
+      console.log(dataContent)
+    } catch (e) {}
+  });
+});
