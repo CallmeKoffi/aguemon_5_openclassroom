@@ -122,12 +122,12 @@ const htmlFormCart = () => {
   //------------------formulaire-------------
 
   const elementInForm = `
-  <form action="" method="POST" id="form">
+  <form action="" method="POST" id="loginForm">
       <h3>Formulaire</h3>
 
       <div class="form_field">
         <label for="firstName">Entrer votre prénom : </label>
-        <input type="text" name="firstName" id="firstName" required>
+        <input type="text" name="firstName" required id="firstName" >
       </div>
 
       <div class="form_field">
@@ -147,11 +147,11 @@ const htmlFormCart = () => {
 
       <div class="form_field">
         <label for="email">Entrer votre email: </label>
-        <input type="email" name="email" id="email" required>
+        <input type="text" name="email" required id="email" >
       </div>
 
       <div class="form_field">
-        <input type="submit" name="envoie" value="Commandez" id = "btn_form">
+        <input type="submit" name="submit" value="Commandez" id = "btn_form">
       </div>
 
     </form>
@@ -166,8 +166,15 @@ const htmlFormCart = () => {
 htmlFormCart();
 
 //------------controle donnée entré dans le formulaire-----------
-let formControl = document.querySelector('#form');
 
+let formControl = document.querySelector('#loginForm');
+//console.log(formControl);
+
+const firstNameinput = formControl.firstName;
+
+
+
+//------------Fin controle donnée entré dans le formulaire-----------
 //----------------------------------tableau des données formulaire----------------------------------
 
 //------------pointage bouton foprmulaire--------------------
@@ -190,13 +197,14 @@ btnForm.addEventListener('click', (e) => {
 
   //--------------------Récupération données formulaire pour LS------------------------
   localStorage.setItem('contact', JSON.stringify(contact));
+  localStorage.setItem('totalprice', JSON.stringify(totalPrice));
 
   //------------Création objet qui contient produits et contact client-----------------
   /**
    * 
    */
   const products = productsStorage.map(product => product.id);
-  console.log(products)
+  //console.log(products)
   const dataSend = {
     products,
     contact,
@@ -207,17 +215,31 @@ btnForm.addEventListener('click', (e) => {
    * 
    */
   
-  const promise = fetch('http://localhost:3000/api/cameras/order', {
+    const promise = fetch('http://localhost:3000/api/cameras/order', {
     method: 'POST',
     body: JSON.stringify(dataSend),
     headers: {
       'content-type': 'application/JSON',
     },
   });
-  promise.then(async (Response) => {
+  promise.then(async (response) => {
     try {
-      const dataContent = await Response.json();
+      const dataContent = await response.json();
       console.log(dataContent)
-    } catch (e) {}
+         if (response.ok) {
+           console.log("id response");
+           console.log(dataContent.orderId);
+
+           localStorage.setItem('orderId', dataContent.orderId);
+           
+           window.location.href = '/Front/confirmationPage.html';
+         } else {
+           alert (`Problème avec le serveur : Erreur ${response.status}`)
+         }
+    }
+      catch (e) {}
+    
   });
+  
+  
 });

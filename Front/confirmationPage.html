@@ -1,49 +1,66 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="style.css"/>
-    
+    <link rel="stylesheet" href="./assets/css/style.css" />
+
+    <!-- script Font awesome-->
+    <script
+      src="https://kit.fontawesome.com/75a2857103.js"
+      crossorigin="anonymous"
+    ></script>
+
     <title>Orinoco</title>
-</head>
-<body>
-<!-- construction en tête site -->
-    
+  </head>
+  <body>
+    <!-- construction en tête site -->
+
     <header class="header">
-        <h1>Oronico</h1>
-        <nav class="Nav" >
-            <ul>
-                <li> <a href="./index.html">Acceuil</a> </li>
-                <li> <a href="#">Produits</a> </li>
-                <li><a href="./cart.html">Panier</a></li>
-            </ul>
-        </nav>
+      <h1>Oronico</h1>
+      <nav class="Nav">
+        <ul class="list">
+          <li><a href="./index.html">Acceuil</a></li>
+
+          <li>
+            <a href="./cart.html"><i class="fas fa-shopping-cart"></i></a>
+          </li>
+        </ul>
+      </nav>
     </header>
 
     <!--Construction banner site-->
     <div class="banner">
-           <img src="./images/vcam_5.jpg" alt="camera" class="banner__picture">
-           <p class="banner__text">Le numéro #1 de la photo</p>
+      <img
+        src="./images/guide-appareil-photo-voyage.jpeg"
+        alt="camera"
+        class="banner__picture"
+      />
+      <p class="banner__text">Le numéro #1 de la photo</p>
     </div>
 
-<!--Corps de la page confirmation-->
+    <!--Corps de la page confirmation-->
 
-<h1 class="title_confirmation">Confiramtion de commande</h1>
+    <h1 class="title_confirmation">Confiramtion de commande</h1>
 
-<div>
-    <p>Merci d'avoir commandé chez Orinico , votre numérode commande est le <span id="commandNumber"></span></p>
-</div>
-</body>
+    <div>
+      <h2>Merci d'avoir commandé chez Orinico ,</h2>
+      <p>
+        votre numérode commande est le <span id="commandNumber"></span> pour un
+        total de <span id="commandPrice"> </span>
+      </p>
+    </div>
 
-<footer>
-    <ul>
+    <footer>
+      <ul class="list">
         <li>Contact</li>
         <li>Nous contactez</li>
         <li>Informations</li>
-    </ul>
-</footer>
-
+      </ul>
+    </footer>
+    <script src="./assets/js/function.js"></script>
+    <script src="./assets/js/confirmation.js"></script>
+  </body>
 </html>
