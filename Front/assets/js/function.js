@@ -12,14 +12,14 @@ function formatPrice(price){
  * Fonction verification Email
  */
  
-/*const validEmail = function(inputEmail){
-    let emailRegExp = new RegExp('^[a-zA-Z0-9.-_]+[@]{1}+[a-zA-Z0-9.-_]+[.]{1}+[a-z]{2,10}$', 'g') ;
+const validEmail = function(inputEmail){
+    let emailRegExp = new RegExp ("/^[a-zA-Z0-9.-_]+[@]{1}+[a-zA-Z0-9.-_]+[.]{1}+[a-z]{2,10}$/", 'g') ;
   
     let testEmail = emailRegExp.test(inputEmail.value);
     console.log(testEmail);
 
-}*/
-const validName = function(inputName){
+}
+/*const validName = function(inputName){
     let nameRegExp = new RegExp(
       /^[a-z]{2,10}$/
       );
@@ -33,5 +33,8 @@ const validName = function(inputName){
       return false;
       
   }
-    }
-  
+    }*/
+
+     //----------- Fonction récupération donnée choisis par utilisateur----------------
+
+     

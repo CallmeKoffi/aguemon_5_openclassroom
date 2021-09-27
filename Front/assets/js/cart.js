@@ -15,7 +15,7 @@ const cartContainer = document.querySelector('.container_cart');
 /**
  * Si il n'ya pas de données dans le LS afficher panier vide , retour à l'acceuil
  */
-
+//function
 if (productsStorage === null) {
   const msgEmpty = `
      <div class="container_cart_empty">
@@ -32,9 +32,9 @@ if (productsStorage === null) {
    * Sinon indexer le tableau de qui contient les produits
    * et les afficher avec nom du produit et prix
    */
-
 } else {
   for (let i = 0; i < productsStorage.length; i++) {
+    console.log(productsStorage[i].name);
     productDisplayInCart =
       productDisplayInCart +
       `
@@ -58,13 +58,13 @@ if (productsStorage === null) {
   cartContainer.innerHTML = productDisplayInCart;
 }
 /**
- * constante qui target le bouton corbeille de la page cart 
+ * constante qui target le bouton corbeille de la page cart
  */
 const removeAll = document.querySelector('.btn-remove-all');
 
 /**
- * Fonction addeventlistener pour écouter le click sur le bouton corbeille et vider 
- * le localstorage 
+ * Fonction addeventlistener pour écouter le click sur le bouton corbeille et vider
+ * le localstorage
  */
 removeAll.addEventListener('click', (e) => {
   e.preventDefault;
@@ -80,9 +80,9 @@ removeAll.addEventListener('click', (e) => {
 //---------------------------------------prix total du panier-----------------------------------------
 
 /**
-   * créer un tableau totalPriceMath
-   * faire une boucle pour stocker chaque prix des produits dans vriable
-*/
+ * créer un tableau totalPriceMath
+ * faire une boucle pour stocker chaque prix des produits dans vriable
+ */
 let totalPriceMath = [];
 for (let j = 0; j < productsStorage.length; j++) {
   let priceItems = productsStorage[j].price;
@@ -96,8 +96,8 @@ for (let j = 0; j < productsStorage.length; j++) {
 
 /**
  * Fonction qui additionne tout les prix
- * @param {any} previousValue 
- * @param {any} currentValue 
+ * @param {any} previousValue
+ * @param {any} currentValue
  * @returns string
  */
 
@@ -165,15 +165,6 @@ const htmlFormCart = () => {
 
 htmlFormCart();
 
-//------------controle donnée entré dans le formulaire-----------
-
-let formControl = document.querySelector('#loginForm');
-//console.log(formControl);
-
-const firstNameinput = formControl.firstName;
-
-
-
 //------------Fin controle donnée entré dans le formulaire-----------
 //----------------------------------tableau des données formulaire----------------------------------
 
@@ -181,12 +172,21 @@ const firstNameinput = formControl.firstName;
 const btnForm = document.querySelector('#btn_form');
 //---------------------------Event bouton formulaire--------------
 /**
- * 
+ *
  */
 
 btnForm.addEventListener('click', (e) => {
   e.preventDefault();
-  
+  //------------controle donnée entré dans le formulaire-----------
+
+  let formControl = document.querySelector('#loginForm');
+  //console.log(formControl);
+
+  const firstNameinput = formControl.firstName;
+  const email = formControl.email;
+
+  validEmail(email);
+  console.log(email);
   let contact = {
     firstName: document.querySelector('#firstName').value,
     lastName: document.querySelector('#lastName').value,
@@ -195,27 +195,27 @@ btnForm.addEventListener('click', (e) => {
     email: document.querySelector('#email').value,
   };
 
-  //--------------------Récupération données formulaire pour LS------------------------
+  //--------------------Récupération données formulaire et prix pour LS------------------------
   localStorage.setItem('contact', JSON.stringify(contact));
   localStorage.setItem('totalprice', JSON.stringify(totalPrice));
 
   //------------Création objet qui contient produits et contact client-----------------
   /**
-   * 
+   *
    */
-  const products = productsStorage.map(product => product.id);
-  //console.log(products)
+  const products = productsStorage.map((product) => product.id);
+
   const dataSend = {
     products,
     contact,
   };
- 
+
   //-------------envoi des données récupéré au server via fetch POST--------------
   /**
-   * 
+   *
    */
-  
-    const promise = fetch('http://localhost:3000/api/cameras/order', {
+
+  const promise = fetch('http://localhost:3000/api/cameras/order', {
     method: 'POST',
     body: JSON.stringify(dataSend),
     headers: {
@@ -225,21 +225,14 @@ btnForm.addEventListener('click', (e) => {
   promise.then(async (response) => {
     try {
       const dataContent = await response.json();
-      console.log(dataContent)
-         if (response.ok) {
-           console.log("id response");
-           console.log(dataContent.orderId);
+      console.log(dataContent);
+      if (response.ok) {
+        localStorage.setItem('orderId', dataContent.orderId);
 
-           localStorage.setItem('orderId', dataContent.orderId);
-           
-           window.location.href = '/Front/confirmationPage.html';
-         } else {
-           alert (`Problème avec le serveur : Erreur ${response.status}`)
-         }
-    }
-      catch (e) {}
-    
+       // window.location.href = '/Front/confirmationPage.html';
+      } else {
+        alert(`Erreur : Remplir lee formulaire ${response.status}`);
+      }
+    } catch (e) {}
   });
-  
-  
 });
