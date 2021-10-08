@@ -10,72 +10,11 @@ let productDisplayInCart = [];
 
 const cartContainer = document.querySelector('.container_cart');
 
-//----------création message quand panier vide-------------
+//---------------------Affichage produit panier-----------------------------
+displayCart();
 
-/**
- * Si il n'ya pas de données dans le LS afficher panier vide , retour à l'acceuil
- */
-//function
-if (productsStorage === null) {
-  const msgEmpty = `
-     <div class="container_cart_empty">
-        <div>
-            Le panier est Vide. <a href="/Front/index.html">Retournez à l'acceuil.</a>
-        </div>
-
-    </div>`;
-  cartContainer.innerHTML = msgEmpty;
-
-  //---------------implantation produit choisis dans le containeur-------------
-
-  /**
-   * Sinon indexer le tableau de qui contient les produits
-   * et les afficher avec nom du produit et prix
-   */
-} else {
-  for (let i = 0; i < productsStorage.length; i++) {
-    console.log(productsStorage[i].name);
-    productDisplayInCart =
-      productDisplayInCart +
-      `
-        
-        <div class= "container_class-info" >
-           <div >
-              Nom article : ${productsStorage[i].name}
-            
-           </div>
-           
-           <div>
-              Prix : ${productsStorage[i].price} €
-           </div>
-
-        </div>
-        `;
-  }
-
-  //------------------Affichage produit--------------------------------------
-
-  cartContainer.innerHTML = productDisplayInCart;
-}
-/**
- * constante qui target le bouton corbeille de la page cart
- */
-const removeAll = document.querySelector('.btn-remove-all');
-
-/**
- * Fonction addeventlistener pour écouter le click sur le bouton corbeille et vider
- * le localstorage
- */
-removeAll.addEventListener('click', (e) => {
-  e.preventDefault;
-  //-----------------Vider le LS-------------
-  localStorage.removeItem('products');
-
-  //----------Alerte panier vide----------------------
-  alert('Le panier est vide');
-  //------------------Rechargement de la page------------------
-  window.location.href = '/Front/cart.html';
-});
+//----------------------Suppression produit panier-------------------------
+binBtn();
 
 //---------------------------------------prix total du panier-----------------------------------------
 
@@ -102,137 +41,54 @@ for (let j = 0; j < productsStorage.length; j++) {
  */
 
 const reducer = (previousValue, currentValue) => previousValue + currentValue;
-let totalPrice = totalPriceMath.reduce(reducer, 0);
+let totalPrice = totalPriceMath.reduce(reducer);
 
 //-------------Affichage prix----------------------
 const structurePriceHtml = `
 <div class="container_total">
-       Total : ${totalPrice} €
+       Total : ${formatPrice(totalPrice)}
 </div>`;
 
 cartContainer.insertAdjacentHTML('beforeend', structurePriceHtml);
 
-//----------------------- installation formulaire dynamiquement------------------
-
-const htmlFormCart = () => {
-  //------------ selection form dans le dom-------------
-
-  const cartFormPosition = document.querySelector('.container_cart');
-
-  //------------------formulaire-------------
-
-  const elementInForm = `
-  <form action="" method="POST" id="loginForm">
-      <h3>Formulaire</h3>
-
-      <div class="form_field">
-        <label for="firstName">Entrer votre prénom : </label>
-        <input type="text" name="firstName" required id="firstName" >
-      </div>
-
-      <div class="form_field">
-        <label for="lasttName">Entrer votre nom : </label>
-        <input type="text" name="lastName" id="lastName" required>
-      </div>
-
-      <div class="form_field">
-        <label for="address">Entrer votre adresse : </label>
-        <textarea name="address" id="address" required></textarea>  
-      </div>
-
-      <div class="form_field">
-        <label for="city">Entrer votre ville : </label>
-        <input type="text" name="city" id="city" required>
-      </div>
-
-      <div class="form_field">
-        <label for="email">Entrer votre email: </label>
-        <input type="text" name="email" required id="email" >
-      </div>
-
-      <div class="form_field">
-        <input type="submit" name="submit" value="Commandez" id = "btn_form">
-      </div>
-
-    </form>
-  `;
-
-  //----------------------insertion ligne html--------------------
-  cartFormPosition.insertAdjacentHTML('afterend', elementInForm);
-};
 
 //-----------------affichage formulaire--------------------------
 
 htmlFormCart();
 
-//------------Fin controle donnée entré dans le formulaire-----------
+
 //----------------------------------tableau des données formulaire----------------------------------
 
 //------------pointage bouton foprmulaire--------------------
 const btnForm = document.querySelector('#btn_form');
-//---------------------------Event bouton formulaire--------------
-/**
- *
- */
 
-btnForm.addEventListener('click', (e) => {
-  e.preventDefault();
+
+
   //------------controle donnée entré dans le formulaire-----------
 
-  let formControl = document.querySelector('#loginForm');
-  //console.log(formControl);
+  
+  let allForm = document.querySelector('#Form');
+  console.log(allForm);
 
-  const firstNameinput = formControl.firstName;
-  const email = formControl.email;
+  const emailsubmit = () => {
+    allForm.addEventListener('submit',(e)=>{
+      let emaiInput = document.querySelector('#email');
+      let regExpEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+      
+      let infoInput = document.querySelectorAll('.info');
+      let regExpInfo = "/^[a-zA-Z,.'-]+$/u"
+      if(emaiInput.value =="" || infoInput.value =="" ){
+        e.preventDefault();
+        
+      }else if(regExpInfo.test(infoInput.value) === false ){
+        e.preventDefault();
+        console.log(regExpInfo.test(infoInput.value));
 
-  validEmail(email);
-  console.log(email);
-  let contact = {
-    firstName: document.querySelector('#firstName').value,
-    lastName: document.querySelector('#lastName').value,
-    address: document.querySelector('#address').value,
-    city: document.querySelector('#city').value,
-    email: document.querySelector('#email').value,
-  };
-
-  //--------------------Récupération données formulaire et prix pour LS------------------------
-  localStorage.setItem('contact', JSON.stringify(contact));
-  localStorage.setItem('totalprice', JSON.stringify(totalPrice));
-
-  //------------Création objet qui contient produits et contact client-----------------
-  /**
-   *
-   */
-  const products = productsStorage.map((product) => product.id);
-
-  const dataSend = {
-    products,
-    contact,
-  };
-
-  //-------------envoi des données récupéré au server via fetch POST--------------
-  /**
-   *
-   */
-
-  const promise = fetch('http://localhost:3000/api/cameras/order', {
-    method: 'POST',
-    body: JSON.stringify(dataSend),
-    headers: {
-      'content-type': 'application/JSON',
-    },
-  });
-  promise.then(async (response) => {
-    try {
-      const dataContent = await response.json();
-      console.log(dataContent);
-      if (response.ok) {
-        localStorage.setItem('orderId', dataContent.orderId);
-
-       // window.location.href = '/Front/confirmationPage.html';
-      } else {
-        alert(`Erreur : Remplir lee formulaire ${response.status}`);
       }
-    } catch (e) {}
-  });
-});
+    })
+  }
+   
+  // ------------implantation des valeurs du formulaire dans un objet---------------
+  
+  orderSubmit();
+  
