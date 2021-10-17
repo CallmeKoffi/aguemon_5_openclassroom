@@ -1,78 +1,79 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/style.css"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
 
     <!-- script Font awesome-->
-    <script src="https://kit.fontawesome.com/75a2857103.js" crossorigin="anonymous"></script>
-    
+    <script
+      src="https://kit.fontawesome.com/75a2857103.js"
+      crossorigin="anonymous"
+    ></script>
+
     <title>Page produit #1</title>
-</head>
-<body>
-<!-- construction en tête site -->
-    
+  </head>
+  <body>
+    <!-- construction en tête site -->
+
     <header class="header__product">
-        <h1>Oronico</h1>
-        <nav class="Nav" >
-            <ul class="list">
-                <li> <a href="./index.html">Acceuil</a> </li>
-                
-                <li><a href="./cart.html"><i class="fas fa-shopping-cart"></i></a></li>
-            </ul>
-        </nav>
+      <h1>Oronico</h1>
+      <nav class="Nav">
+        <ul class="list">
+          <li><a href="./index.html">Acceuil</a></li>
+
+          <li>
+            <a href="./cart.html"><i class="fas fa-shopping-cart"></i></a>
+          </li>
+        </ul>
+      </nav>
     </header>
 
     <!--Construction banner site-->
-    <div >
-        <img src="./images/guide-appareil-photo-voyage.jpeg" alt="camera" class="banner__picture">
-        
- </div>
+    <div>
+      <img
+        src="./images/guide-appareil-photo-voyage.jpeg"
+        alt="camera"
+        class="banner__picture"
+      />
+    </div>
 
     <section>
-     <div class="container__product">
-        <div class="container__product--image" >
-            <img src="" alt="camera product" id="container__product--image">
+      <div class="container__product">
+        <div class="container__product--image">
+          <img src="" alt="camera product" id="container__product--image" />
         </div>
-            
+
         <div class="container__product--info">
-            <ul >
-                <li>Nom Produit : <span id="name"></span></li>
-                <li>Description : <span id="description"></span></li>
-                <li>Prix: <span id="price"></span></li>
-                
-            </ul>
+          <ul>
+            <li>Nom Produit : <span id="name"></span></li>
+            <li>Description : <span id="description"></span></li>
+            <li>Prix: <span id="price"></span></li>
+          </ul>
         </div>
         <div>
-            <label for="option__produit"></label>
-            <select id="option__produit" name="option__produit" >
-        
-            </select>
+          <label for="option__produit"></label>
+          <select id="option__produit" name="option__produit"></select>
         </div>
-            
-    
+
         <button type="button" name="btn__send" id="add_to_cart">
-            Ajouter au panier
+          Ajouter au panier
         </button>
         <button onclick="window.location.href= '/Front/index.html'">
-            Retour à l'acceuil
+          Retour à l'acceuil
         </button>
-       
-        
-      
+      </div>
     </section>
 
     <footer>
-        <ul class="list">
-            <li>Contact</li>
-            <li>Nous contactez</li>
-            <li>Informations</li>
-        </ul>
+      <ul class="list">
+        <li>Contact</li>
+        <li>Nous contactez</li>
+        <li>Informations</li>
+      </ul>
     </footer>
     <script src="./assets/js/function.js"></script>
     <script src="./assets/js/product.js"></script>
-</body>
-
+  </body>
 </html>

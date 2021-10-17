@@ -65,7 +65,7 @@ div.banner {
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
 }
-/* style due la page produit*/
+/* style de la page produit*/
 
 .header__product {
   border-bottom: 2px solid black;
@@ -120,10 +120,4 @@ input{
 }
 textarea{
     width: 80vw;
-}
-.success {
-  border: 2px solid green;
-}
-.fail{
-  border: 2px solid red;
 }

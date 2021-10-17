@@ -67,28 +67,36 @@ const btnForm = document.querySelector('#btn_form');
   //------------controle donnée entré dans le formulaire-----------
 
   
-  let allForm = document.querySelector('#Form');
-  console.log(allForm);
+const form = document.querySelector('#Form');
 
-  const emailsubmit = () => {
-    allForm.addEventListener('submit',(e)=>{
-      let emaiInput = document.querySelector('#email');
-      let regExpEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
-      
-      let infoInput = document.querySelectorAll('.info');
-      let regExpInfo = "/^[a-zA-Z,.'-]+$/u"
-      if(emaiInput.value =="" || infoInput.value =="" ){
-        e.preventDefault();
-        
-      }else if(regExpInfo.test(infoInput.value) === false ){
-        e.preventDefault();
-        console.log(regExpInfo.test(infoInput.value));
 
-      }
-    })
-  }
-   
+
+  //let info = document.querySelectorAll('.info')
+  form.firstName.addEventListener('change', function () {
+    validInfo(this);
+  });
+  form.lastName.addEventListener('change', function () {
+    validInfo(this);
+  });
+  form.address.addEventListener('change', function () {
+    validInfo(this);
+  });
+  form.city.addEventListener('change', function () {
+    validInfo(this);
+  });
+  
+  //formSubmit();
+  form.email.addEventListener('change', function () {
+    validEmail(this);
+  });
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (validInfo(form.firstName) && validInfo(form.lastName) && validInfo(form.city) && validInfo(form.address) && validEmail(form.email)) {
+      form.submit();
+    }
+})
   // ------------implantation des valeurs du formulaire dans un objet---------------
   
   orderSubmit();
+  
   
