@@ -263,8 +263,9 @@ const htmlFormCart = () => {
  */
 
 const validEmail = function (inputEmail) {
+  console.log(inputEmail.value);
   let emailRegExp = new RegExp(
-    '/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/',
+    '/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/',
     'gm'
   );
   let testEmail = emailRegExp.test(inputEmail.value);
