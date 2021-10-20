@@ -28,9 +28,18 @@ const fetchDisplayAllProducts = () => {
   );
 };
 
+/**
+ * Fonction qui format le prix
+ * @param {integer} price
+ * @returns string
+ */
+ function formatPrice(price) {
+  return Number.parseFloat(price / 100).toFixed(2) + ' €';
+}
+
 // Product Page fonction
 /**
- * fonc tion fetch qui récup§re information des produits stocké dans l(api--------------)
+ * fonc tion fetch qui récup§re information des produits stocké dans l'api--------------)
  */
 
 const fetchDataProduct = () => {
@@ -51,9 +60,9 @@ const fetchDataProduct = () => {
           .querySelector('#add_to_cart')
           .addEventListener('click', addToCart);
 
-        // -----------Choice of lenses option nfor product---------------
+       
 
-        //----------- Fonction récupération donnée choisis par utilisateur----------------
+        //----------- Fonction récupération produit choisis par utilisateur----------------
 
         function addToCart(e) {
           let cartChoice = {
@@ -124,14 +133,7 @@ function fillSelect(lenses) {
   }
 }
 
-/**
- * Fonction qui format le prix
- * @param {integer} price
- * @returns string
- */
-function formatPrice(price) {
-  return Number.parseFloat(price / 100).toFixed(2) + ' €';
-}
+
 
 //----------création message quand panier vide-------------
 
@@ -242,7 +244,7 @@ const htmlFormCart = () => {
   
         <div class="form_field">
           <label for="email">Entrer votre email: </label>
-          <input type="text" name="email" required="true" id="email" >
+          <input type="email" name="email" required="true" id="email" >
           <small></small>
         </div>
   
