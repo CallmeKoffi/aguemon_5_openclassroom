@@ -1,5 +1,10 @@
 // Index page fonction
 
+/**
+ * affichage dynamique des produits sur la page d'acceuil
+ */
+
+
 const fetchDisplayAllProducts = () => {
   fetch('http://localhost:3000/api/cameras').then((res) =>
     res
@@ -37,7 +42,9 @@ const fetchDisplayAllProducts = () => {
   return Number.parseFloat(price / 100).toFixed(2) + ' €';
 }
 
-// Product Page fonction
+// ----------------------Product Page fonction
+
+
 /**
  * fonc tion fetch qui récup§re information des produits stocké dans l'api--------------)
  */
@@ -182,7 +189,7 @@ const displayCart = () => {
     cartContainer.innerHTML = productDisplayInCart;
   }
 };
-
+// -------------------------- suppression produit du panier----------------
 const binBtn = () => {
   /**
    * constante qui target le bouton corbeille de la page cart
@@ -260,7 +267,7 @@ const htmlFormCart = () => {
 };
 
 /**
- * 
+ * fonction validation email
  * @param {*} inputEmail 
  */
 
@@ -281,6 +288,11 @@ const validEmail = function (inputEmail) {
     return false;
   }
 };
+
+/**
+ * fonction validation champ texte
+ * @param {*} inputEmail 
+ */
 const validInfo = function (inputName) {
   let infoRegExp = new RegExp(
     '/[a-zA-Z-/]{2,16}$/',
